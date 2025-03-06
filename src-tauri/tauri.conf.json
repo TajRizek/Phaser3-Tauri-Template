@@ -1,47 +1,47 @@
 {
+  "$schema": "../node_modules/@tauri-apps/cli/schema.json",
   "build": {
     "beforeDevCommand": "npm run dev",
     "beforeBuildCommand": "npm run build",
-    "devPath": "http://localhost:5500",
-    "distDir": "../dist",
-    "withGlobalTauri": true
+    "devUrl": "http://localhost:5500",
+    "frontendDist": "../dist"
   },
-  "package": {
-    "productName": "Example Project",
-    "version": "0.0.0"
+  "bundle": {
+    "active": true,
+    "category": "Game",
+    "copyright": "",
+    "externalBin": [],
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "longDescription": "",
+    "resources": [],
+    "shortDescription": "",
+    "targets": ["app"],
+    "windows": {
+      "certificateThumbprint": null,
+      "digestAlgorithm": "sha256",
+      "timestampUrl": ""
+    }
   },
-  "tauri": {
-    "allowlist": {
-      "all": false,
-      "shell": {
-        "all": false,
-        "open": true
-      }
-    },
-    "bundle": {
-      "active": true,
-      "targets": "all",
-      "identifier": "dev.danmizu",
-      "icon": [
-        "icons/32x32.png",
-        "icons/128x128.png",
-        "icons/128x128@2x.png",
-        "icons/icon.icns",
-        "icons/icon.ico"
-      ]
-    },
+  "identifier": "com.zoobattles.dev",
+  "productName": "Zoo Battles",
+  "version": "1.0.0",
+  "app": {
     "security": {
       "csp": null
     },
     "windows": [
       {
-        "title": "Example Project",
-        "width": 1920,
+        "fullscreen": true,
         "height": 1080,
-        "fullscreen": false,
-        "resizable": true,
-        "maximized": true,
-        "titleBarStyle": "Transparent"
+        "resizable": false,
+        "title": "Zoo Battles",
+        "width": 1920
       }
     ]
   }
