@@ -1,6 +1,6 @@
 import { createMusicButton, createSoundButton, createBloodButton } from './components/UIButtons';
 import { audioManager } from './AudioManager';
-import { Window, getCurrentWindow } from '@tauri-apps/api/window';
+import { invoke } from '@tauri-apps/api/core';
 
 export default class MenuScene extends Phaser.Scene {
     constructor() {
@@ -125,9 +125,8 @@ export default class MenuScene extends Phaser.Scene {
                         this.game.destroy(true);
                         // Additional cleanup
                         window.gameInstance = null;
-                        // Get and close the current window
-                        const appWindow = await getCurrentWindow();
-                        await appWindow.close();
+                        // Call our Rust exit command
+                        await invoke('close_application');
                     } catch (e) {
                         console.error('Failed to exit:', e);
                     }

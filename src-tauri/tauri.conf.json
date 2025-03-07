@@ -21,11 +21,14 @@
     "longDescription": "",
     "resources": [],
     "shortDescription": "",
-    "targets": ["app"],
+    "targets": ["msi", "app"],
     "windows": {
       "certificateThumbprint": null,
       "digestAlgorithm": "sha256",
-      "timestampUrl": ""
+      "timestampUrl": "",
+      "wix": {
+        "language": "en-US"
+      }
     }
   },
   "identifier": "com.zoobattles.dev",

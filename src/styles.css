@@ -1,3 +1,68 @@
+/* Reset default margins and ensure full viewport coverage */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #000000;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden !important;
+    background: #000000 !important;
+    background-color: #000000 !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+/* Ensure the game container takes full viewport */
+#game {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden !important;
+    background: #000000 !important;
+    background-color: #000000 !important;
+}
+
+/* Ensure canvas stretches properly */
+canvas {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    background: #000000 !important;
+    background-color: #000000 !important;
+}
+
+/* Hide all scrollbars */
+* {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+    display: none;
+    background: #000000;
+}
+
+/* Ensure fullscreen works properly */
+:fullscreen {
+    width: 100%;
+    height: 100%;
+    background: #000000 !important;
+    background-color: #000000 !important;
+}
+
+/* Force black background on all common elements */
+body, div, canvas, main, section, article, aside, header, footer, nav {
+    background: #000000 !important;
+    background-color: #000000 !important;
+}
+
 @font-face {
     font-family: 'ThaleahFat';
     src: url('../assets/ui/ThaleahFat.ttf') format('truetype');

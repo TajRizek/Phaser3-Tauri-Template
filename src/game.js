@@ -1068,22 +1068,15 @@ export class GameScene extends Phaser.Scene {
 
 const config = {
     type: Phaser.AUTO,
-    width: window.innerWidth,
-    height: window.innerHeight,
     scale: {
-        mode: Phaser.Scale.FIT,
+        mode: Phaser.Scale.RESIZE,
         parent: 'game',
+        width: '100%',
+        height: '100%',
         autoCenter: Phaser.Scale.CENTER_BOTH,
-        width: window.innerWidth,
-        height: window.innerHeight,
-        min: {
-            width: 800,
-            height: 600
-        },
-        max: {
-            width: 1920,
-            height: 1080
-        }
+        autoRound: true,
+        expandParent: true,
+        fullscreenTarget: document.documentElement
     },
     physics: {
         default: 'arcade',
@@ -1111,14 +1104,48 @@ const config = {
     render: {
         antialias: true,
         pixelArt: false,
-        roundPixels: true
+        roundPixels: true,
+        transparent: false,
+        backgroundColor: '#000000'
+    },
+    callbacks: {
+        postBoot: function(game) {
+            // Remove any scroll bars and ensure proper sizing
+            document.documentElement.style.overflow = 'hidden';
+            document.documentElement.style.backgroundColor = '#000000';
+            document.body.style.overflow = 'hidden';
+            document.body.style.backgroundColor = '#000000';
+            game.canvas.style.width = '100%';
+            game.canvas.style.height = '100%';
+            game.canvas.style.backgroundColor = '#000000';
+            game.scale.refresh();
+        }
     }
 };
 
-// Add resize handler
+// Update resize handler to better handle fullscreen
 window.addEventListener('resize', () => {
     if (window.gameInstance) {
-        window.gameInstance.scale.resize(window.innerWidth, window.innerHeight);
+        // Remove any scroll bars
+        document.documentElement.style.overflow = 'hidden';
+        document.body.style.overflow = 'hidden';
+        
+        // Update game size
+        window.gameInstance.scale.refresh();
+    }
+});
+
+// Add fullscreen toggle on F11
+window.addEventListener('keydown', (e) => {
+    if (e.key === 'F11') {
+        e.preventDefault();
+        if (window.gameInstance) {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+            } else {
+                document.exitFullscreen();
+            }
+        }
     }
 });
 
